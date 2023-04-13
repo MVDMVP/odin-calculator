@@ -49,9 +49,8 @@ function numberPress(e){
 function drawNumbers(){
   let row = document.createElement('div');
   for (let i = 1; i <= 10; i++){
-    let value = i%10;
-    
-    
+    //want to draw 1-9 then 0
+    let value = i%10;  
     let number = document.createElement('button');
     number.classList.add('number');
     number.textContent = value;
@@ -72,4 +71,4 @@ function drawOperators(){
 }
 drawNumbers();
 drawOperators();
-
+update();
