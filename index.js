@@ -4,7 +4,7 @@ const resultArea = document.querySelector('.display')
 
 function update(){
   // show a if there is no operator, otherwise show b
-  if (calc.operator === '' || calc.b === ''){
+  if (calc.operator === '' || calc.b === '' || calc.a == 'ERROR'){
     resultArea.textContent = calc.a;
   }
   else{
@@ -21,6 +21,9 @@ let calc = {
 
 
 function operate(){
+  if (calc.a =='ERROR'){
+    return;
+  }
   let result = 0;
   switch(calc.operator){
     case '+':
@@ -33,7 +36,11 @@ function operate(){
       result = multiply(calc.a, calc.b);
       break;
     case '/':
-      result = divide(calc.a, calc.b);
+      if (calc.b === 0){
+        result = 'ERROR';
+      }
+      else
+        result = divide(calc.a, calc.b);
       break;
     default:
       result = calc.a;
