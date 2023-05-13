@@ -5,6 +5,9 @@
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid black;
+  padding: 15px;
+  background-color: lightgray;
+  border-radius: 5px;
 }
 
 .buttons{
@@ -29,6 +32,9 @@
 
 .number{
   flex: 1 1 32%;
+}
+.operator{
+  flex: 1;
 }
 .number, .operator{
   font-size: 25px;

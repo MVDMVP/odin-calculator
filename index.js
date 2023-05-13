@@ -2,49 +2,107 @@ const numberArea = document.querySelector('.numbers')
 const operatorArea = document.querySelector('.operators')
 const resultArea = document.querySelector('.display')
 
-let calculation = {
-  a: 0,
-  b: 0,
-  operator: ''
-}
-
 function update(){
-  resultArea.textContent = calculation.a;
-}
-
-function add(a, b) {
-  return a + b;
-}
-function subtract(a, b) {
-  return a - b;
-}
-function multiply(a, b) {
-  return a * b;
-}
-function divide(a, b) {
-  return a / b;
-}
-
-function calculate(a,b,operator){
-  switch (operator) {
-    case '+':
-      return add(a,b);
-    case '-':
-      return subtract(a,b);
-    case '*':
-      return multiply(a,b);
-    case '/':
-      return divide(a,b);
-    default:
-      return 'Invalid operator';
+  // show a if there is no operator, otherwise show b
+  if (calc.operator === '' || calc.b === ''){
+    resultArea.textContent = calc.a;
+  }
+  else{
+    resultArea.textContent = calc.b;
   }
 }
+
+//object to hold the calculator state
+let calc = {
+  a: 0,
+  b: '',
+  operator: '',
+}
+
+
+function operate(){
+  let result = 0;
+  switch(calc.operator){
+    case '+':
+      result = add(calc.a, calc.b);
+      break;
+    case '-':
+      result = subtract(calc.a, calc.b);
+      break;
+    case '*':
+      result = multiply(calc.a, calc.b);
+      break;
+    case '/':
+      result = divide(calc.a, calc.b);
+      break;
+    default:
+      result = calc.a;
+      break;
+  }
+  console.log(`${calc.a}, ${calc.operator}, ${calc.b} = ${result}`);
+  calc.a = result;
+  calc.b = '';
+  calc.operator = '';
+  console.log(`${calc.a}, ${calc.operator}, ${calc.b} = ${result}`);
+
+  update();
+
+}
+
+//all the math functions
+function add(a, b) {return a + b;}
+function subtract(a, b) {return a - b;}
+function multiply(a, b) {return a * b;}
+function divide(a, b) {return a / b;}
+
+//function to reset the calculator to base state
+function clear(){
+  calc.a = 0;
+  calc.b = '';
+  calc.operator = '';
+  update();
+}
+
+
+
 function operatorPress(e){
-  console.log(e.target.textContent);
+  let operator = e.target.textContent;
+  console.log(operator);
+  switch(operator){
+    case 'clr':
+      clear();
+      break;
+    case '=':
+      operate();
+      break;
+    default:
+      //if there is no operator, set it to the operator
+      if (calc.operator === ''){
+        calc.operator = operator;
+      }
+      //if there is an operator, operate and then set the operator
+      else{
+        operate();
+        calc.operator = operator;
+      }
+      break;
+  }
+  update();
 }
+
+
 function numberPress(e){
-  console.log(e.target.textContent);
+  //if there is no operator; add to a
+  if (calc.operator === ''){
+    calc.a = calc.a*10 + parseInt(e.target.textContent);
+  }
+  //if there is an operator; add to b
+  else{
+    calc.b = calc.b*10 + parseInt(e.target.textContent);
+  }
+  update();
 }
+
 
 function drawNumbers(){
   let row = document.createElement('div');
@@ -56,9 +114,9 @@ function drawNumbers(){
     number.textContent = value;
     number.addEventListener('mousedown', numberPress);
     numberArea.appendChild(number);
-
   }
 }
+
 function drawOperators(){
   let operators = ['clr','+','-','*','/','='];
   for (let i = 0; i < operators.length; i++){
