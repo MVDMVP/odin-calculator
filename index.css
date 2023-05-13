@@ -1,43 +1,14 @@
 .calculator{
   width: 500px;
-  height: 600px;;
-  display: flex;
+  height: 600px;
+  margin: auto;
+  display:flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid black;
   padding: 15px;
   background-color: lightgray;
   border-radius: 5px;
-}
-
-.buttons{
-  display: flex;
-  gap: 10px;
-  flex-grow: 1;
-}
-
-.operators, .numbers {
-  display: flex;
-  gap: 5px;
-}
-
-.operators{
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.numbers{
-  flex-wrap: wrap;
-}
-
-.number{
-  flex: 1 1 32%;
-}
-.operator{
-  flex: 1;
-}
-.number, .operator{
-  font-size: 25px;
 }
 
 .display{
@@ -52,6 +23,49 @@
   padding: 7px;
   color: white;
   border-radius: 5px;
-  font-family: 'Times New Roman', Times, serif;
 }
+
+
+
+.buttons{
+  display: flex;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.operators, .numbers {
+  display: flex;
+  gap: 7px;
+  
+}
+
+.operators{
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.numbers{
+  flex-wrap: wrap;
+}
+
+.calcbutton{
+  border-radius: 10px;
+}
+
+.calcbutton:hover{
+  background-color: #d3d3d3;
+}
+
+.number{
+  flex: 1 1 32%;
+}
+.operator{
+  flex: 1;
+}
+
+.number, .operator{
+  font-size: 25px;
+}
+
+
 

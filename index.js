@@ -118,6 +118,7 @@ function drawNumbers(){
     let value = i%10;  
     let number = document.createElement('button');
     number.classList.add('number');
+    number.classList.add('calcbutton');
     number.textContent = value;
     number.addEventListener('mousedown', numberPress);
     numberArea.appendChild(number);
@@ -129,6 +130,7 @@ function drawOperators(){
   for (let i = 0; i < operators.length; i++){
     let operator = document.createElement('button');
     operator.classList.add('operator');
+    operator.classList.add('calcbutton');
     operator.textContent = operators[i];
     operator.addEventListener('mousedown', operatorPress);
     operatorArea.appendChild(operator);
